@@ -1,3 +1,5 @@
+import ICar from '../Interfaces/ICar';
+
 class Car {
   protected id?: string | undefined; 
   protected model: string;
@@ -8,7 +10,7 @@ class Car {
   private doorsQty: number;
   private seatsQty: number;
 
-  constructor(carro: ICar) { //se tipamos um a um, retorna erro de lint! permite só até 6 params no constructor
+  constructor(carro: ICar) { // se tipamos um a um, retorna erro de lint! permite só até 6 params no constructor
     this.model = carro.model;
     this.year = carro.year;
     this.color = carro.color;
