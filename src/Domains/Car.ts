@@ -67,14 +67,6 @@ class Car {
   protected getBuyValue() {
     return this.buyValue;
   }
-
-  // private getDoors() {
-  //   return this.doorsQty;
-  // };
-
-  // private getSeats() {
-  //   return this.seatsQty;
-  // };
 }
 
 export default Car;
