@@ -1,31 +1,21 @@
-class Cars {
-  protected id: string | undefined; 
+class Car {
+  protected id?: string | undefined; 
   protected model: string;
   protected year: number;
   protected color:string;
   protected status: boolean;
   protected buyValue: number;
-  // private doorsQty: number;
-  // private seatsQty: number;
+  private doorsQty: number;
+  private seatsQty: number;
 
-  constructor(
-    id: string | undefined,
-    model: string,
-    year: number,
-    color: string,
-    status: boolean,
-    buyValue: number,
-    // doorsQty: number,
-    // seatsQty: number,
-  ) {
-    this.id = id;
-    this.model = model;
-    this.year = year;
-    this.color = color;
-    this.status = status;
-    this.buyValue = buyValue;
-    // this.doorsQty = doorsQty;
-    // this.seatsQty = seatsQty;
+  constructor(carro: ICar) { //se tipamos um a um, retorna erro de lint! permite só até 6 params no constructor
+    this.model = carro.model;
+    this.year = carro.year;
+    this.color = carro.color;
+    this.status = carro.status;
+    this.buyValue = carro.buyValue;
+    this.doorsQty = carro.doorsQty;
+    this.seatsQty = carro.seatsQty;
   }
 
   protected setId(id: string) {
@@ -85,4 +75,4 @@ class Cars {
   // };
 }
 
-export default Cars;
+export default Car;
