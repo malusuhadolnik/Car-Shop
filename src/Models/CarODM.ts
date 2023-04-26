@@ -42,6 +42,7 @@ class CarODM {
       { _id: id },
       { ...obj } as UpdateQuery<ICar>,
       { new: true },
+
     )
     return updated;
   }

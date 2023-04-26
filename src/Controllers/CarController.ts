@@ -69,13 +69,8 @@ class CarController {
     }
 
     const car: ICar = {
-      model: this.req.body.model,
-      year: this.req.body.year,
-      color: this.req.body.color,
+      ...this.req.body,
       status: carStatus,
-      buyValue: this.req.body.buyValue,
-      doorsQty: this.req.body.doorsQty,
-      seatsQty: this.req.body.seatsQty,
     };
 
     const targetCar = await this.service.updateById(id, car);
