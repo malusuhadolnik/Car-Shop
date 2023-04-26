@@ -30,7 +30,7 @@ class CarController {
       const newCar = await this.service.createNewCar(car);
       return this.res.status(201).json(newCar);
     } catch (error) {
-      this.next(error);
+      this.next(error); // middleware de erro para retornar status e mensagem
     }
   }
 }
