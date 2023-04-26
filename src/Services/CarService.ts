@@ -24,5 +24,14 @@ class CarService {
     const carList = await carODM.listallCars();
     return carList.map((car) => this.createCarDomain(car)); // o createCarDomain não recebe array como parâmetro!
   }
+
+  public async getCarById(id: string) {
+    const carODM = new CarODM();
+    const targetCar = await carODM.findCarById(id);
+    if (!targetCar || targetCar === "invalid") {
+      return targetCar;
+    }
+    return this.createCarDomain(targetCar as ICar);
+  }
 }
 export default CarService;

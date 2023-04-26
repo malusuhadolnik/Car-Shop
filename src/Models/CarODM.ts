@@ -1,4 +1,4 @@
-import { Model, Schema, model, models } from 'mongoose';
+import { Model, Schema, model, models, isValidObjectId } from 'mongoose';
 import ICar from '../Interfaces/ICar';
 
 class CarODM {
@@ -26,8 +26,11 @@ class CarODM {
     return this.model.find();
   }
 
-  public async findCarById(id: number): Promise<ICar | null > {
-    const target = this.model.findById(id);
+  public async findCarById(id: string): Promise<ICar | null | string> {
+    if (!isValidObjectId(id)) {
+      return "invalid";
+    }
+    const target = this.model.findOne({ _id: id }, { __v: false });
     return target;
   }
 }
