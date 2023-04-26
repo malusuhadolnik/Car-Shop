@@ -28,7 +28,7 @@ class CarODM {
 
   public async findCarById(id: string): Promise<ICar | null | string> {
     if (!isValidObjectId(id)) {
-      return "invalid";
+      return 'invalid';
     }
     const target = this.model.findOne({ _id: id }, { __v: false });
     return target;

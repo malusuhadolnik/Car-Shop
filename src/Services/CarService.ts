@@ -3,7 +3,7 @@ import ICar from '../Interfaces/ICar';
 import CarODM from '../Models/CarODM';
 
 class CarService {
-  private createCarDomain(car: ICar | null ): Car | null {
+  private createCarDomain(car: ICar | null): Car | null {
     if (car) {
       return new Car(car);
     }
@@ -28,7 +28,7 @@ class CarService {
   public async getCarById(id: string) {
     const carODM = new CarODM();
     const targetCar = await carODM.findCarById(id);
-    if (!targetCar || targetCar === "invalid") {
+    if (!targetCar || targetCar === 'invalid') {
       return targetCar;
     }
     return this.createCarDomain(targetCar as ICar);

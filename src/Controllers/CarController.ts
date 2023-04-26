@@ -52,10 +52,10 @@ class CarController {
     const { id } = this.req.params;
     const targetCar = await this.service.getCarById(id);
     if (!targetCar) {
-      return this.res.status(404).json( { "message": "Car not found" } );
+      return this.res.status(404).json({ message: 'Car not found' });
     }
     if (targetCar === 'invalid') {
-      return this.res.status(422).json( { "message": "Invalid mongo id" } );
+      return this.res.status(422).json({ message: 'Invalid mongo id' });
     }
     return this.res.status(200).json(targetCar);
   }
