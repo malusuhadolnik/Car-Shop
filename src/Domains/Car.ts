@@ -1,16 +1,17 @@
 import ICar from '../Interfaces/ICar';
 
 class Car {
-  protected id?: string | undefined; 
+  protected id?: string;
   protected model: string;
   protected year: number;
   protected color:string;
-  protected status: boolean;
+  protected status?: boolean;
   protected buyValue: number;
   private doorsQty: number;
   private seatsQty: number;
 
   constructor(carro: ICar) { // se tipamos um a um, retorna erro de lint! permite só até 6 params no constructor
+    this.id = carro.id;
     this.model = carro.model;
     this.year = carro.year;
     this.color = carro.color;
