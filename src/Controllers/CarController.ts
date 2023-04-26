@@ -59,5 +59,33 @@ class CarController {
     }
     return this.res.status(200).json(targetCar);
   }
+
+  public async updateById() {
+    const { id } = this.req.params;
+
+    let carStatus = false;
+    if (this.req.body.status) {
+      carStatus = true;
+    }
+
+    const car: ICar = {
+      model: this.req.body.model,
+      year: this.req.body.year,
+      color: this.req.body.color,
+      status: carStatus,
+      buyValue: this.req.body.buyValue,
+      doorsQty: this.req.body.doorsQty,
+      seatsQty: this.req.body.seatsQty,
+    };
+
+    const targetCar = await this.service.updateById(id, car);
+    if (!targetCar) {
+      return this.res.status(404).json({ message: 'Car not found' });
+    }
+    if (targetCar === 'invalid') {
+      return this.res.status(422).json({ message: 'Invalid mongo id' });
+    }
+    return this.res.status(200).json(targetCar);
+  }
 }
 export default CarController;
