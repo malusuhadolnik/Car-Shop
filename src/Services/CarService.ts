@@ -33,5 +33,14 @@ class CarService {
     }
     return this.createCarDomain(targetCar as ICar);
   }
+
+  public async updateById(id: string, obj: ICar) {
+    const carODM = new CarODM();
+    const updated = await carODM.updateCarInfo(id, obj);
+    if (!updated || updated === 'invalid') {
+      return updated;
+    }
+    return this.createCarDomain(updated as ICar);
+  }
 }
 export default CarService;

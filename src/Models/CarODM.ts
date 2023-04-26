@@ -34,7 +34,7 @@ class CarODM {
     return target;
   }
 
-  public async updateCarInfo(id: string, obj: Partial<ICar>): Promise<ICar | null | string> {
+  public async updateCarInfo(id: string, obj:ICar): Promise<ICar | null | string> {
     if (!isValidObjectId(id)) {
       return 'invalid';
     }
