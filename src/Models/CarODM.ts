@@ -22,8 +22,13 @@ class CarODM {
     return this.model.create({ ...car });
   }
 
-  public async listallCars(): Promise<ICar[]> {
-    return this.model.find({});
+  public async listallCars() {
+    return this.model.find();
+  }
+
+  public async findCarById(id: number): Promise<ICar | null > {
+    const target = this.model.findById(id);
+    return target;
   }
 }
 
