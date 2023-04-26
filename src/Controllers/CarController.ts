@@ -25,7 +25,6 @@ class CarController {
       model: this.req.body.model,
       year: this.req.body.year,
       color: this.req.body.color,
-      // status: this.req.body.status ? true : false,
       status: carStatus,
       buyValue: this.req.body.buyValue,
       doorsQty: this.req.body.doorsQty,
