@@ -18,18 +18,15 @@ import { Model, Schema, models,
 
     public async listall() {
         return this.model.find();
+    }
+
+    public async findCarById(id: string): Promise<T | null | string> {
+        if (!isValidObjectId(id)) {
+          return 'invalid';
+        }
+        const target = this.model.findOne({ _id: id }, { __v: false });
+        return target;
       }
-  
-    // public async update(id: string, obj: Partial<T>):
-    // Promise<T | null> {
-    //   if (!isValidObjectId(id)) throw Error('Invalid Mongo id');
-      
-    //   return this.model.findByIdAndUpdate(
-    //     { _id: id },
-    //     { ...obj } as UpdateQuery<T>,
-    //     { new: true },
-    //   );   
-    // }
   }
   
   export default AbstractODM;
