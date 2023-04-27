@@ -1,6 +1,6 @@
-import Motorcycle from "../Domains/Motorcycle";
-import IMotorcycle from "../Interfaces/IMotorcycle";
-import MotorcycleODM from "../Models/MotorcycleODM";
+import Motorcycle from '../Domains/Motorcycle';
+import IMotorcycle from '../Interfaces/IMotorcycle';
+import MotorcycleODM from '../Models/MotorcycleODM';
 
 class MotorcycleService {
   private createBikeDomain(bike: IMotorcycle | null): Motorcycle | null {
@@ -10,10 +10,10 @@ class MotorcycleService {
     return null;
   }
     
-  public async createNewBike(bike: IMotorcycle) {
+  public async createBike(bike: IMotorcycle) {
     const bikeODM = new MotorcycleODM();
     const newBike = await bikeODM.create(bike);
-    return this.createBikeDomain(newBike)
+    return this.createBikeDomain(newBike);
   }
 }
 
