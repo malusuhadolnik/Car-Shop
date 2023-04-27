@@ -12,9 +12,9 @@ import { Model, Schema, models,
       this.model = models[this.modelName] || model(modelName, this.schema);
     }
   
-    // public async create(obj: T): Promise<T> {
-    //   return this.model.create({ ...obj });
-    // }
+    public async create(obj: T): Promise<T> {
+      return this.model.create({ ...obj });
+    }
   
     // public async update(id: string, obj: Partial<T>):
     // Promise<T | null> {
