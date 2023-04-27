@@ -21,7 +21,7 @@ class CarService {
 
   public async listCars() {
     const carODM = new CarODM();
-    const carList = await carODM.listallCars();
+    const carList = await carODM.listall();
     return carList.map((car) => this.createCarDomain(car)); // o createCarDomain não recebe array como parâmetro!
   }
 

@@ -17,9 +17,9 @@ class CarODM extends AbstractODM<ICar>{
   super(schema, 'Car');
 }
 
-  public async listallCars() {
-    return this.model.find();
-  }
+  // public async listall() {
+  //   return this.model.find();
+  // }
 
   public async findCarById(id: string): Promise<ICar | null | string> {
     if (!isValidObjectId(id)) {

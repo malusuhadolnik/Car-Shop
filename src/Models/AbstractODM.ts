@@ -15,6 +15,10 @@ import { Model, Schema, models,
     public async create(obj: T): Promise<T> {
       return this.model.create({ ...obj });
     }
+
+    public async listall() {
+        return this.model.find();
+      }
   
     // public async update(id: string, obj: Partial<T>):
     // Promise<T | null> {
