@@ -10,6 +10,6 @@ class Motorcycle extends Vehicle {
     this.category = motos.category;
     this.engineCapacity = motos.engineCapacity;
   }
-};
+}
 
 export default Motorcycle;
