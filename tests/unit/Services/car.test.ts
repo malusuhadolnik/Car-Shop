@@ -48,6 +48,27 @@ const expectedCarList: ICar[] = [
   },
 ];
 
+const newInfoToUpdate = {
+  model: 'Marea',
+  year: 1992,
+  color: 'Red',
+  status: true,
+  buyValue: 12.000,
+  doorsQty: 2,
+  seatsQty: 5,
+};
+
+const updated = {
+  id: '634852326b35b59438fbea2f',
+  model: 'Marea',
+  year: 1992,
+  color: 'Red',
+  status: true,
+  buyValue: 12.000,
+  doorsQty: 2,
+  seatsQty: 5,
+};
+
 describe('Testa o CRUD dos carros', function () {
   it('Deve criar um novo carro com sucesso', async function () {
     sinon.stub(Model, 'create').resolves(expectedResult);
@@ -88,6 +109,31 @@ describe('Testa o CRUD dos carros', function () {
       expect((error as Error).message).to.be.equal('Car not found');
     }
   });
+  it('Deve retornar a informação atualizada do carro cuja id foi dada', async function () {
+    sinon.stub(Model, 'findByIdAndUpdate').resolves(updated);
+    const service = new CarService();
+    const result = await service.updateById('6348513f34c397abcad040b2', newInfoToUpdate);
+    expect(result).to.be.deep.equal(updated);
+  });
+  it('Deve retornar um erro se a id passada para o update for inválida', async function () {
+    sinon.stub(Model, 'findByIdAndUpdate').resolves({});
+    try {
+      const service = new CarService();
+      await service.updateById('invalid_id', newInfoToUpdate);
+    } catch (error) {
+      expect((error as Error).message).to.be.equal('Invalid mongo id');
+    }
+  });
+  it('Deve retornar um erro se não houver carro com a id passada para o update', async function () {
+    sinon.stub(Model, 'findByIdAndUpdate').resolves({});
+    try {
+      const service = new CarService();
+      await service.updateById('6348513f34c397abcaXXX666', newInfoToUpdate);
+    } catch (error) {
+      expect((error as Error).message).to.be.equal('Car not found');
+    }
+  });
+
   afterEach(function () {
     sinon.restore();
   });  
