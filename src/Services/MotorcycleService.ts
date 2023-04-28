@@ -30,6 +30,15 @@ class MotorcycleService {
     }
     return this.createBikeDomain(targetBike as IMotorcycle);
   }
+
+  public async updateById(id: string, obj: IMotorcycle) {
+    const bikeODM = new MotorcycleODM();
+    const updated = await bikeODM.updateVehicleInfo(id, obj);
+    if (!updated || updated === 'invalid') {
+      return updated;
+    }
+    return this.createBikeDomain(updated as IMotorcycle);
+  }
 }
 
 export default MotorcycleService;

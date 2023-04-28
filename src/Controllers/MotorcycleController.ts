@@ -54,6 +54,29 @@ class MotorcycleController {
     }
     return this.res.status(200).json(targetBike);
   }
+
+  public async updateById() {
+    const { id } = this.req.params;
+
+    let bikeStatus = false;
+    if (this.req.body.status) {
+      bikeStatus = true;
+    }
+
+    const bike: IMotorcycle = {
+      ...this.req.body,
+      status: bikeStatus,
+    };
+
+    const targetBike = await this.service.updateById(id, bike);
+    if (!targetBike) {
+      return this.res.status(404).json({ message: 'Motorcycle not found' });
+    }
+    if (targetBike === 'invalid') {
+      return this.res.status(422).json({ message: 'Invalid mongo id' });
+    }
+    return this.res.status(200).json(targetBike);
+  }
 }
 
 export default MotorcycleController;

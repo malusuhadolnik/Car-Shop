@@ -18,4 +18,9 @@ bikeRoutes.get(
   (req, res, next) => new MotorcycleController(req, res, next).getById(),
 );
 
+bikeRoutes.put(
+  '/:id',
+  (req, res, next) => new MotorcycleController(req, res, next).updateById(),
+);
+
 export default bikeRoutes;
