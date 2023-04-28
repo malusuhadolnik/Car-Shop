@@ -13,4 +13,9 @@ bikeRoutes.get(
   (req, res, next) => new MotorcycleController(req, res, next).listAllBikes(),
 );
 
+bikeRoutes.get(
+  '/:id',
+  (req, res, next) => new MotorcycleController(req, res, next).getById(),
+);
+
 export default bikeRoutes;

@@ -21,6 +21,15 @@ class MotorcycleService {
     const bikeList = await bikeODM.listall();
     return bikeList.map((bike) => this.createBikeDomain(bike));
   }
+
+  public async getBikeById(id: string) {
+    const bikeODM = new MotorcycleODM();
+    const targetBike = await bikeODM.findCarById(id);
+    if (!targetBike || targetBike === 'invalid') {
+      return targetBike;
+    }
+    return this.createBikeDomain(targetBike as IMotorcycle);
+  }
 }
 
 export default MotorcycleService;

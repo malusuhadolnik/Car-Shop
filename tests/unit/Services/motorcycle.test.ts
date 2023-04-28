@@ -63,4 +63,14 @@ describe('Testa os métodos CRUD implementados para Motos', function () {
     const result = await service.listBikes();
     expect(result).to.be.deep.equal(expectedBikeList);
   });
+
+  it('Deve retornar uma moto quando uma id existente e válida é fornecida', async function () {
+    sinon.stub(Model, 'findOne').resolves(expectedOutput);
+    const service = new MotorcycleService();
+    const result = await service.getBikeById('6348513f34c397abcad040b2');
+    expect(result).to.be.deep.equal(expectedOutput);
+  });
+  afterEach(function () {
+    sinon.restore();
+  });
 });
