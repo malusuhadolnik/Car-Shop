@@ -50,6 +50,27 @@ const expectedBikeList: IMotorcycle[] = [
   },
 ];
 
+const newInfo = {
+  model: modelHornet,
+  year: 2014,
+  color: 'Red',
+  status: true,
+  buyValue: 45.000,
+  category: 'Street',
+  engineCapacity: 600,
+};
+
+const updated = {
+  id: '634852326b35b59438fbea2f',
+  model: modelHornet,
+  year: 2014,
+  color: 'Red',
+  status: true,
+  buyValue: 45.000,
+  category: 'Street',
+  engineCapacity: 600,
+};
+
 describe('Testa os métodos CRUD implementados para Motos', function () {
   it('Deve criar uma nova moto com sucesso', async function () {
     sinon.stub(Model, 'create').resolves(expectedOutput);
@@ -70,6 +91,32 @@ describe('Testa os métodos CRUD implementados para Motos', function () {
     const result = await service.getBikeById('6348513f34c397abcad040b2');
     expect(result).to.be.deep.equal(expectedOutput);
   });
+
+  it('Deve retornar a informação atualizada do carro cuja id foi dada', async function () {
+    sinon.stub(Model, 'findByIdAndUpdate').resolves(updated);
+    const service = new MotorcycleService();
+    const result = await service.updateById('634852326b35b59438fbea2f', newInfo as IMotorcycle);
+    expect(result).to.be.deep.equal(updated);
+  });
+  it('Deve retornar um erro se a id passada para o update for inválida', async function () {
+    sinon.stub(Model, 'findByIdAndUpdate').resolves({});
+    try {
+      const service = new MotorcycleService();
+      await service.updateById('invalid_id', newInfo as IMotorcycle);
+    } catch (error) {
+      expect((error as Error).message).to.be.equal('Invalid mongo id');
+    }
+  });
+  it('Deve retornar um erro se não houver carro com a id passada para o update', async function () {
+    sinon.stub(Model, 'findByIdAndUpdate').resolves({});
+    try {
+      const service = new MotorcycleService();
+      await service.updateById('6348513f34c397abcaXXX666', newInfo as IMotorcycle);
+    } catch (error) {
+      expect((error as Error).message).to.be.equal('Car not found');
+    }
+  });
+  
   afterEach(function () {
     sinon.restore();
   });
