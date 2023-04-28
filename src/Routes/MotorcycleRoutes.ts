@@ -8,4 +8,9 @@ bikeRoutes.post(
   (req, res, next) => new MotorcycleController(req, res, next).createNewBike(),
 );
 
+bikeRoutes.get(
+  '/',
+  (req, res, next) => new MotorcycleController(req, res, next).listAllBikes(),
+);
+
 export default bikeRoutes;
