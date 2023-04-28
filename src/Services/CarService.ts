@@ -36,7 +36,7 @@ class CarService {
 
   public async updateById(id: string, obj: ICar) {
     const carODM = new CarODM();
-    const updated = await carODM.updateCarInfo(id, obj);
+    const updated = await carODM.updateVehicleInfo(id, obj);
     if (!updated || updated === 'invalid') {
       return updated;
     }

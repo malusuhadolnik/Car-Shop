@@ -16,18 +16,6 @@ class CarODM extends AbstractODM<ICar> {
     });
     super(schema, 'Car');
   }
-
-  public async updateCarInfo(id: string, obj:ICar): Promise<ICar | null | string> {
-    if (!isValidObjectId(id)) {
-      return 'invalid';
-    }
-    const updated = this.model.findByIdAndUpdate(
-      { _id: id },
-      { ...obj } as UpdateQuery<ICar>,
-      { new: true },
-    );
-    return updated;
-  }
 }
 
 export default CarODM;

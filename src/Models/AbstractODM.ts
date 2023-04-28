@@ -1,5 +1,5 @@
 import { Model, Schema, models,
-  model, isValidObjectId } from 'mongoose';
+  model, isValidObjectId, UpdateQuery } from 'mongoose';
   
 abstract class AbstractODM<T> {
   protected model: Model<T>;
@@ -26,6 +26,18 @@ abstract class AbstractODM<T> {
     }
     const target = this.model.findOne({ _id: id }, { __v: false });
     return target;
+  }
+
+  public async updateVehicleInfo(id: string, obj:T): Promise<T | null | string> {
+    if (!isValidObjectId(id)) {
+      return 'invalid';
+    }
+    const updated = this.model.findByIdAndUpdate(
+      { _id: id },
+      { ...obj } as UpdateQuery<T>,
+      { new: true },
+    );
+    return updated;
   }
 }
   
